@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "891164179358",
+    "project_id": "quanlydiem-f1cc3",
+    "storage_bucket": "quanlydiem-f1cc3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891164179358:android:5af461668d50ced6f7b48f",
+        "android_client_info": {
+          "package_name": "com.example.quanlydiem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOnH5jFehvNy1iFS-58itvdV0Y3b-_dV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
