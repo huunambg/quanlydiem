@@ -85,7 +85,6 @@ class _GradeAllSubjectScreenState extends State<GradeAllSubjectScreen> {
                       DataColumn(label: Text("ĐĐGgk")),
                       DataColumn(label: Text("ĐĐGck")),
                       DataColumn(label: Text("ĐTBmhk")),
-                      DataColumn(label: Text("Hành động"))
                     ],
                     rows: gradeCtl.getListGradleSemester().map((Grade grade) {
                       return DataRow(
@@ -130,7 +129,6 @@ class _GradeAllSubjectScreenState extends State<GradeAllSubjectScreen> {
                             style: GlobalTextStyles.font16w600Color8A96B2
                                 .copyWith(color: Colors.black),
                           )),
-                          DataCell(SizedBox(), showEditIcon: true)
                         ],
                       );
                     }).toList(),
