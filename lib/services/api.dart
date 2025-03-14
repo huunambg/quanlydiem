@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:quanlydiem/const/ipv4.dart';
 import 'package:quanlydiem/model/acount.dart';
 import 'package:quanlydiem/model/class.dart';
 import 'package:quanlydiem/model/grade.dart';
@@ -11,8 +12,7 @@ import 'package:quanlydiem/model/subject.dart';
 class ApiService {
   final String baseUrl;
   ApiService()
-      : baseUrl =
-            "http://192.168.100.15:3000/public/api"; // Thay bằng URL của bạn
+      : baseUrl = "http://$ipv4:3000/public/api"; // Thay bằng URL của bạn
 
   Future<dynamic> login(Account account) async {
     final url = Uri.parse('$baseUrl/login');
@@ -66,6 +66,7 @@ class ApiService {
       throw "Lỗi kết nối tới máy chủ.";
     }
   }
+
   Future<void> updateGrade(Grade grade) async {
     final url = Uri.parse('$baseUrl/update-grade');
     print(url);

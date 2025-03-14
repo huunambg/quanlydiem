@@ -8,15 +8,15 @@ class User {
   String? createdAt;
   int? status;
 
-  User(
-      {this.userId,
-      this.password,
-      this.fullName,
-      this.email,
-      this.phoneNumber,
-      this.role,
-      this.createdAt,
-      this.status});
+  User({
+    this.userId,
+    this.password,
+    this.fullName,
+    this.email,
+    this.phoneNumber,
+    this.role,
+    this.status,
+  });
 
   User.fromJson(Map<String, dynamic> json) {
     userId = json['user_id'];
@@ -30,15 +30,35 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['user_id'] = this.userId;
-    data['password'] = this.password;
-    data['full_name'] = this.fullName;
-    data['email'] = this.email;
-    data['phone_number'] = this.phoneNumber;
-    data['role'] = this.role;
-    data['created_at'] = this.createdAt;
-    data['status'] = this.status;
+    final Map<String, dynamic> data = {};
+    data['user_id'] = userId.toString();
+    data['password'] = password;
+    data['full_name'] = fullName;
+    data['email'] = email;
+    data['phone_number'] = phoneNumber;
+    data['role'] = role;
+    data['status'] = status.toString();
     return data;
+  }
+
+  User copyWith({
+    int? userId,
+    String? password,
+    String? fullName,
+    String? email,
+    String? phoneNumber,
+    String? role,
+    String? createdAt,
+    int? status,
+  }) {
+    return User(
+      userId: userId ?? this.userId,
+      password: password ?? this.password,
+      fullName: fullName ?? this.fullName,
+      email: email ?? this.email,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      role: role ?? this.role,
+      status: status ?? this.status,
+    );
   }
 }

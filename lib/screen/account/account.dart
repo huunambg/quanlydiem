@@ -6,6 +6,7 @@ import 'package:quanlydiem/config/global_text_style.dart';
 import 'package:quanlydiem/screen/login/controller/login_controller.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
 import 'package:quanlydiem/screen/splash/splash.dart';
+import 'package:quanlydiem/screen/update_password/update_password.dart';
 import 'package:quanlydiem/util/preferences_util.dart';
 
 class AcountScreen extends StatefulWidget {
@@ -78,9 +79,9 @@ class _AcountScreenState extends State<AcountScreen> {
                   iconColor: GlobalColors.primary,
                   icon: Icons.person_2_outlined,
                   onpressed: () {
-                    // Get.to(() => UpdateUserScreen(
-                    //       user: loginCtl.userData.value,
-                    //     ));
+                    Get.to(() => ChangePasswordScreen(
+                          user: loginCtl.userData.value,
+                        ));
                   },
                   titile: "Đổi mật khẩu",
                 ),
