@@ -82,6 +82,23 @@ class ApiService {
     }
   }
 
+  Future<void> deleteGrade(int id) async {
+    final url = Uri.parse('$baseUrl/delete-grade/$id');
+    print(url);
+    try {
+      final response = await http.delete(
+        url,
+      );
+      print("updateGrade ${jsonDecode(response.body)['data']}");
+      if (response.statusCode != 200) {
+        throw response.body;
+      }
+    } catch (e) {
+      print("updateGrade: $e");
+      throw "Lỗi kết nối tới máy chủ.";
+    }
+  }
+
   Future<List<Class>> getListClassByTeacher(int teacherId) async {
     final url = Uri.parse('$baseUrl/get-class-by-teacher/$teacherId');
     print(url);

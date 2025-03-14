@@ -42,4 +42,8 @@ class GradeOneSubjectController extends GetxController {
   Future<void> updateGrade(Grade grade) async {
     await ApiService().updateGrade(grade);
   }
+
+  Future<void> deleteGrade(int id) async {
+    await ApiService().deleteGrade(id);
+  }
 }

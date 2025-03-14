@@ -1,3 +1,4 @@
+import 'package:cherry_toast/cherry_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
@@ -82,7 +83,8 @@ class _GradeOneSubjectScreenState extends State<GradeOneSubjectScreen> {
       directory = await getApplicationDocumentsDirectory(); // Thư mục trên iOS
     }
 
-    String filePath = '${directory!.path}/BangDiem${widget.subject.subjectName}.xlsx';
+    String filePath =
+        '${directory!.path}/BangDiem${widget.subject.subjectName}.xlsx';
     File(filePath)
       ..createSync(recursive: true)
       ..writeAsBytesSync(fileBytes!);
@@ -94,7 +96,6 @@ class _GradeOneSubjectScreenState extends State<GradeOneSubjectScreen> {
   void initState() {
     super.initState();
     gradeCtl.loadData(widget.classes.classId!, widget.subject.subjectId!);
-    
   }
 
   @override
@@ -191,7 +192,8 @@ class _GradeOneSubjectScreenState extends State<GradeOneSubjectScreen> {
                       DataColumn(label: Text("ĐĐGgk")),
                       DataColumn(label: Text("ĐĐGck")),
                       DataColumn(label: Text("ĐTBmhk")),
-                      DataColumn(label: Text("Thao tác")),
+                      DataColumn(label: Text("Sửa điểm")),
+                      DataColumn(label: Text("Xóa điểm")),
                     ],
                     rows: gradeCtl
                         .getListGradleSemester()
@@ -239,9 +241,41 @@ class _GradeOneSubjectScreenState extends State<GradeOneSubjectScreen> {
                                 .copyWith(color: Colors.black),
                           )),
                           DataCell(ElevatedButton(
-                            child: Text("Sửa"),
+                            child: const Text("Sửa"),
                             onPressed: () {
                               Get.to(UpdateGradeScreen(grade: grade));
+                            },
+                          )),
+                          DataCell(ElevatedButton(
+                            child: const Text("Xóa"),
+                            onPressed: () {
+                              PanaraConfirmDialog.show(
+                                context,
+                                title: "Xin chào",
+                                message: "Bạn có muốn xóa điểm điểm ra file!",
+                                confirmButtonText: "Xóa",
+                                cancelButtonText: "Quay lại",
+                                onTapCancel: () {
+                                  Get.back();
+                                },
+                                onTapConfirm: () {
+                                  Get.back();
+                                  gradeCtl
+                                      .deleteGrade(grade.gradeId!)
+                                      .then((value) {
+                                    int index = gradeCtl.listGrade.indexWhere(
+                                      (element) =>
+                                          element.gradeId == grade.gradeId,
+                                    );
+                                    gradeCtl.listGrade.removeAt(index);
+                                    CherryToast.success(
+                                      title: const Text("Đã xóa thành công"),
+                                    ).show(context);
+                                  });
+                                },
+                                panaraDialogType: PanaraDialogType.warning,
+                                barrierDismissible: false,
+                              );
                             },
                           )),
                         ],
